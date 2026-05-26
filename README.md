@@ -1,144 +1,138 @@
-~~~
-# Task Management System 🚀
+# 📋 Task Manager App
 
-A modern and efficient **Task Management System** built with **React, Express.js, SQLite, and JWT Authentication**. This project allows users to create, manage, update, and track tasks with secure authentication and real-time progress monitoring.
-
----
-
-## 📌 Project Overview
-
-The **Task Management System** is designed to help users organize and manage their daily tasks efficiently. It provides a clean and user-friendly interface with powerful backend support, ensuring secure task management and seamless user experience.
+A full-stack task management application built with **Node.js**, **Express**, **SQLite**, and **React** — featuring JWT authentication, real-time filtering, and a clean responsive UI.
 
 ---
 
-## ✨ Features
+## 🚀 Features
 
-### 🔹 Week 1 – Backend & API Development
-- Built a complete **REST API** using **Express.js**
-- Implemented **CRUD operations**:
-  - `GET /api/tasks`
-  - `POST /api/tasks`
-  - `PUT /api/tasks`
-  - `DELETE /api/tasks`
-- Used **better-sqlite3** for database management
-- Designed database schemas for:
-  - **Users**
-  - **Tasks**
-- Added robust **input validation** using **express-validator**
-- Ensured secure and validated API payload handling
-
----
-
-### 🔹 Week 2 – Frontend Development
-- Developed a responsive **React Single Page Application (SPA)**
-- Integrated **React Router** for seamless navigation
-- Created an interactive **Dashboard Page**
-- Built a reusable **TaskForm Modal** for:
-  - Creating tasks
-  - Editing tasks
-- Configured **Axios Interceptors** for:
-  - Automatic JWT token attachment
-  - Clean API request handling
-
----
-
-### 🔹 Week 3 – Advanced Features
-- Implemented **JWT Authentication System**
-- Added secure endpoints:
-  - `/api/auth/register`
-  - `/api/auth/login`
-- Used **bcryptjs** for secure password hashing
-- Added **debounced instant search filters**
-- Implemented **task filtering by status**
-- Added a **real-time progress bar** to track completed tasks percentage
-- Created **basic testing setup** using `api.test.ts`
+- **JWT Authentication** — Secure register/login flow with bcrypt password hashing
+- **Full CRUD API** — Create, read, update, and delete tasks via RESTful endpoints
+- **SQLite Database** — Lightweight persistent storage with `better-sqlite3`
+- **Input Validation** — Server-side validation using `express-validator`
+- **React SPA** — Single-page application with React Router
+- **Axios Interceptors** — Auto-attaches auth tokens to every API request
+- **Search & Filter** — Debounced live search + status dropdown filter
+- **Progress Bar** — Real-time display of task completion percentage
+- **Unit Tests** — Basic API test coverage with `api.test.ts`
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Frontend
-- React.js
-- React Router
-- Axios
-- CSS / Tailwind (if used)
-
-### Backend
-- Express.js
-- Node.js
-- TypeScript
-
-### Database
-- SQLite (`better-sqlite3`)
-
-### Authentication & Security
-- JWT (JSON Web Token)
-- bcryptjs
-- express-validator
-
-### Testing
-- Unit Testing (`api.test.ts`)
-
----
-## 📂 Project Structure
-
-
-src/
-│
-├── components/
-│ ├── TaskList.jsx
-│ ├── TaskForm.jsx
-│ ├── TaskCard.jsx
-│ ├── TaskDetails.jsx
-│
-├── pages/
-│ ├── DashboardPage.jsx
-│
-├── services/
-│ ├── api.js
-│
-├── App.jsx
-├── main.jsx
-
+| Layer | Technology |
+|---|---|
+| Backend | Node.js, Express.js, TypeScript |
+| Database | SQLite (`better-sqlite3`) |
+| Auth | JWT, bcryptjs |
+| Validation | express-validator |
+| Frontend | React, React Router |
+| HTTP Client | Axios |
+| Testing | TypeScript (api.test.ts) |
 
 ---
 
-## ⚙️ Installation & Setup
+## 📁 Project Structure
 
-### 1️⃣ Clone the Repository
+```
+├── server.ts               # Express server & API routes
+├── database/
+│   └── schema.ts           # Users & Tasks DB schema
+├── middleware/
+│   └── auth.ts             # JWT middleware
+├── client/
+│   ├── src/
+│   │   ├── pages/
+│   │   │   └── DashboardPage.tsx
+│   │   ├── components/
+│   │   │   └── TaskForm.tsx
+│   │   └── api/
+│   │       └── axiosClient.ts
+│   └── public/
+└── tests/
+    └── api.test.ts
+```
+
+---
+
+## ⚙️ Getting Started
+
+### Prerequisites
+
+- Node.js v18+
+- npm or yarn
+
+### Installation
 
 ```bash
-git clone <your-repository-link>
-cd task-management-system
-2️⃣ Install Dependencies
+# Clone the repo
+git clone https://github.com/your-username/task-manager-app.git
+cd task-manager-app
+
+# Install dependencies
 npm install
-3️⃣ Start Backend Server
-npm run server
-4️⃣ Start Frontend
+
+# Start the backend server
 npm run dev
-🔐 Authentication Flow
-User Registration using /api/auth/register
-User Login using /api/auth/login
-JWT token generated after successful login
-Token automatically attached to requests using Axios Interceptors
-Protected task management operations
-📈 Key Highlights
 
-✔ Secure JWT Authentication
-✔ Full CRUD Task Operations
-✔ Input Validation & Security
-✔ Search & Status Filters
-✔ Real-Time Task Progress Tracking
-✔ Modular & Scalable Architecture
-✔ Clean UI/UX Design
+# In a separate terminal, start the React frontend
+cd client
+npm install
+npm start
+```
 
-🚀 Future Improvements
-Task deadlines & reminders
-Drag-and-drop task management
-Dark mode support
-Cloud database integration
-Role-based access control
-👨‍💻 Author
+The API runs on `http://localhost:5000` and the React app on `http://localhost:3000`.
 
-Nasir Bhatti
-Software Engineering Student | Web Developer | Tech Enthusiast
+---
+
+## 🔌 API Endpoints
+
+### Auth
+
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/api/auth/register` | Register a new user |
+| POST | `/api/auth/login` | Login and receive JWT token |
+
+### Tasks *(protected — requires Authorization header)*
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/tasks` | Get all tasks |
+| POST | `/api/tasks` | Create a new task |
+| PUT | `/api/tasks/:id` | Update a task |
+| DELETE | `/api/tasks/:id` | Delete a task |
+
+---
+
+## 🔐 Authentication
+
+All task routes are protected. Include the JWT token in the request header:
+
+```http
+Authorization: Bearer <your_token>
+```
+
+The Axios client handles this automatically via an interceptor.
+
+---
+
+## 🧪 Running Tests
+
+```bash
+npm test
+```
+
+Tests are located in `tests/api.test.ts` and cover core API configurations.
+
+---
+
+## 📸 Screenshots
+
+> *(Add screenshots of your dashboard and login page here)*
+
+---
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
