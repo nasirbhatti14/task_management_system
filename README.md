@@ -129,7 +129,8 @@ Tests are located in `tests/api.test.ts` and cover core API configurations.
 
 ## 📸 Screenshots
 
-> *(Add screenshots of your dashboard and login page here)*
+> <img width="1920" height="807" alt="auth" src="https://github.com/user-attachments/assets/49e95c6e-c3ea-4be3-8f5a-fda5c039a13b" />
+
 
 ---
 
